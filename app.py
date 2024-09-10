@@ -19,7 +19,6 @@ config = {
     'database': os.getenv('DB_NAME', 'db_escola'),  # Obtém o nome do banco de dados da variável de ambiente
     'port': int(os.getenv('DB_PORT', 3306)),  # Obtém a porta do banco de dados da variável de ambiente
     'ssl_ca': os.getenv('SSL_CA_PATH'),  # Caminho para o certificado SSL
-    'ssl_verify_cert': True
 }
 
 # Função para conectar ao banco de dados
@@ -41,7 +40,6 @@ def connect_db():
 @app.route('/aluno', methods=['POST']) 
 def post_aluno():
     success = False
-
     data = request.json
     
     campos_obrigatorios = ['nome', 'cpf']
@@ -75,7 +73,7 @@ def post_aluno():
             
         except Error as err:
             # Em caso de erro na inserção, imprime a mensagem de erro
-            error = str(err)
+            error = (err)
         finally:
             # Fecha o cursor e a conexão para liberar recursos
             cursor.close()
